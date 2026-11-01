@@ -1,1062 +1,437 @@
 /* ================================================= */
-/* GOOGLE FONT */
+/* GOOGLE FONT & RESET */
 /* ================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-/* ================================================= */
-/* RESET */
-/* ================================================= */
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    font-family:'Poppins', sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* ================================================= */
-/* BODY */
+/* BODY & BACKGROUND */
 /* ================================================= */
 
 body{
     width:100%;
     height:100vh;
     overflow:hidden;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
-    background:linear-gradient(
-        135deg,
-        #FFE5EC 0%,
-        #FFD6E8 30%,
-        #FFC2D9 70%,
-        #FFB7D5 100%
-    );
+    background: linear-gradient(135deg, #FFE5EC 0%, #FFD6E8 30%, #FFC2D9 70%, #FFB7D5 100%);
+    position: relative;
 }
 
 /* ================================================= */
-/* PAGE */
+/* PAGE STYLING */
 /* ================================================= */
 
 .page{
-
     position:absolute;
     inset:0;
-
     display:flex;
     flex-direction:column;
-
     justify-content:center;
     align-items:center;
-
     opacity:0;
     visibility:hidden;
-
-    transition:.7s ease;
-
+    transition:.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    padding: 20px;
 }
 
 .page.active{
-
     opacity:1;
     visibility:visible;
-
 }
 
 /* ================================================= */
-/* TITLE */
+/* TYpOGRAPHY & BUTTONS */
 /* ================================================= */
 
 .title{
-
-    font-size:48px;
+    font-size:42px;
     font-weight:700;
-
     color:#D65A8C;
-
-    margin-bottom:15px;
-
+    margin-bottom:12px;
     text-align:center;
-
+    text-shadow: 0 2px 10px rgba(214, 90, 140, 0.15);
 }
-
-/* ================================================= */
-/* SUBTITLE */
-/* ================================================= */
 
 .subtitle{
-
-    font-size:18px;
-
+    font-size:17px;
     color:#A86C87;
-
-    margin-bottom:45px;
-
+    margin-bottom:35px;
     text-align:center;
-
+    max-width: 500px;
+    line-height: 1.5;
 }
-
-/* ================================================= */
-/* BUTTON GROUP */
-/* ================================================= */
 
 .btn-group{
-
     display:flex;
-
     gap:18px;
-
+    justify-content: center;
 }
-
-/* ================================================= */
-/* BUTTON */
-/* ================================================= */
 
 button{
-
     padding:13px 38px;
-
     border:none;
-
     border-radius:50px;
-
     cursor:pointer;
-
     font-size:16px;
-
     font-weight:600;
-
-    transition:.3s;
-
+    transition:.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    outline: none;
+    white-space: nowrap;
 }
 
-/* ================================================= */
-/* YES BUTTON */
-/* ================================================= */
-
-#startBtn,
-#yesBtn,
-#enterBtn{
-
+#startBtn, #yesBtn, #enterBtn, .backBtn, .menu-card button {
     background:#FF7DAE;
-
     color:white;
-
-    box-shadow:0 8px 20px rgba(255,125,174,.35);
-
+    box-shadow:0 8px 20px rgba(255,125,174,.4);
 }
 
-#startBtn:hover,
-#yesBtn:hover,
-#enterBtn:hover{
-
-    transform:translateY(-3px);
-
+#startBtn:hover, #yesBtn:hover, #enterBtn:hover, .backBtn:hover, .menu-card button:hover {
+    transform:translateY(-3px) scale(1.02);
     background:#FF6AA2;
-
+    box-shadow:0 12px 25px rgba(255,105,160,.5);
 }
 
-/* ================================================= */
-/* NO BUTTON */
-/* ================================================= */
-
-#stayBtn,
-#noBtn{
-
+#stayBtn, #noBtn{
     background:white;
-
     color:#D65A8C;
-
     border:2px solid #FF9BC4;
-
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
-#stayBtn:hover,
-#noBtn:hover{
-
+#stayBtn:hover{
     transform:translateY(-3px);
+    background: #FFF0F5;
+}
 
+/* Tombol Back di dalam alur halaman */
+.inlineBackBtn {
+    margin-top: 25px;
+    background: white;
+    color: #D65A8C;
+    border: 2px solid #FF9BC4;
+    padding: 10px 25px;
+    font-size: 14px;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.inlineBackBtn:hover {
+    background: #FFF0F5;
+    transform: translateY(-2px);
 }
 
 /* ================================================= */
-/* HEART WRAPPER */
+/* HEART & LOCK GROUP (BERDENYUT BERSAMA) */
 /* ================================================= */
 
-.heart-wrapper{
-
-    position:relative;
-
-    width:420px;
-    height:360px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-}
-/* ===================================== */
-/* HEART */
-/* ===================================== */
-
-.heart{
-
-    position:relative;
-
-    width:180px;
-    height:180px;
-
-    background:#FFF8F2;
-
-    transform:rotate(-45deg);
-
-    box-shadow:
-        0 20px 40px rgba(255,105,180,.20);
-
-    z-index:2;
-
+.heart-lock-group {
+    position: relative;
+    width: 320px;
+    height: 290px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    animation: heartbeat 2.2s infinite ease-in-out;
 }
 
-.heart::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    background:#FFF8F2;
-
-    border-radius:50%;
-
-    top:-90px;
-    left:0;
-
+.lock-shackle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border: 7px solid #FFF8E7;
+    border-bottom: none;
+    border-radius: 35px 35px 0 0;
+    z-index: 1;
 }
 
-.heart::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    background:#FFF8F2;
-
-    border-radius:50%;
-
-    top:0;
-    left:90px;
-
+.heart-svg {
+    position: absolute;
+    top: 25px;
+    width: 290px;
+    height: 270px;
+    filter: drop-shadow(0 15px 30px rgba(255, 105, 180, 0.25));
+    z-index: 2;
 }
-
-/* ===================================== */
-/* LOCK */
-/* ===================================== */
-
-.lock{
-
-    position:absolute;
-
-    top:20px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:80px;
-    height:90px;
-
-    z-index:1;
-
-}
-
-/* LENGKUNGAN GEMBOK */
-
-.lock::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:-18px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:50px;
-    height:42px;
-
-    border:7px solid #FFF8F2;
-
-    border-bottom:none;
-
-    border-radius:40px 40px 0 0;
-
-    z-index:3;
-
-}
-
-/* BADAN GEMBOK */
-
-.lock::after{
-
-    content:"";
-
-    position:absolute;
-
-    bottom:0;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:80px;
-    height:55px;
-
-    background:#FFF8F2;
-
-    border-radius:14px;
-
-    box-shadow:
-        0 8px 18px rgba(255,105,180,.20);
-
-    z-index:0;
-
-}
-/* ================================================= */
-/* PASSWORD */
-/* ================================================= */
 
 .password-box{
-
-    position:absolute;
-
-    top:50%;
-    left:50%;
-
-    transform:
-        translate(-50%,-50%)
-        rotate(45deg);
-
-    display:flex;
-
-    gap:15px;
-
-    z-index:20;
-
+    position: absolute;
+    top: 135px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 20;
 }
-
-/* ================================================= */
-/* INPUT */
-/* ================================================= */
 
 .pin{
-
-    width:55px;
-    height:55px;
-
-    border:none;
-
-    outline:none;
-
-    border-radius:15px;
-
-    background:white;
-
-    text-align:center;
-
-    font-size:24px;
-
-    font-weight:bold;
-
-    color:#D65A8C;
-
-    box-shadow:
-        0 8px 15px rgba(0,0,0,.08);
-
-}
-
-.pin::-webkit-inner-spin-button,
-.pin::-webkit-outer-spin-button{
-
-    display:none;
-
-}
-
-/* ================================================= */
-/* ENTER */
-/* ================================================= */
-
-#enterBtn{
-
-    margin-top:35px;
-
-}
-
-/* ================================================= */
-/* WRONG TEXT */
-/* ================================================= */
-
-#wrongText{
-
-    margin-top:18px;
-
-    color:#E6397A;
-
-    font-weight:600;
-
-    display:none;
-
-}
-
-/* ================================================= */
-/* PAGE 3 */
-/* ================================================= */
-
-#page3{
-    gap:35px;
-}
-
-/* ================================================= */
-/* ENVELOPE */
-/* ================================================= */
-
-.envelope{
-
-    position:relative;
-
-    width:320px;
-    height:210px;
-
-    cursor:pointer;
-
-    transition:.45s;
-
-}
-
-.envelope:hover{
-
-    transform:translateY(-8px);
-
-}
-
-/* BODY */
-
-.envelope-body{
-
-    position:absolute;
-
-    bottom:0;
-
-    width:100%;
-    height:170px;
-
-    background:#FFF8E7;
-
-    border-radius:0 0 18px 18px;
-
-    box-shadow:
-        0 18px 35px rgba(255,105,180,.20);
-
-}
-
-/* FLAP */
-
-.envelope-top{
-
-    position:absolute;
-
-    width:100%;
-    height:120px;
-
-    background:#FFF8E7;
-
-    clip-path:polygon(0 0,100% 0,50% 100%);
-
-    transform-origin:top;
-
-    transition:.6s;
-
-    z-index:5;
-
-}
-
-/* SAAT DIBUKA */
-
-.envelope.open .envelope-top{
-
-    transform:rotateX(180deg);
-
-}
-
-/* ================================================= */
-/* MENU CARD */
-/* ================================================= */
-
-.menu-card{
-
-    display:none;
-
-    flex-direction:column;
-
-    gap:15px;
-
-    padding:30px;
-
-    border-radius:25px;
-
-    background:rgba(255,255,255,.75);
-
-    backdrop-filter:blur(12px);
-
-    box-shadow:
-        0 15px 35px rgba(255,105,180,.18);
-
-}
-
-.menu-card button{
-
-    width:220px;
-
-    background:#FF7DAE;
-
-    color:white;
-
-}
-
-.menu-card button:hover{
-
-    background:#FF6A9E;
-
-}
-
-/* ================================================= */
-/* LETTER PAGE */
-/* ================================================= */
-
-.letter-card{
-
-    width:720px;
-    max-width:90%;
-
-    max-height:80vh;
-
-    overflow-y:auto;
-
-    background:#FFF8E7;
-
-    border-radius:25px;
-
-    padding:40px;
-
-    box-shadow:
-        0 20px 45px rgba(255,105,180,.18);
-
-}
-
-/* TITLE */
-
-.letter-card h2{
-
-    text-align:center;
-
-    color:#D65A8C;
-
-    margin-bottom:25px;
-
-    font-size:32px;
-
-}
-
-/* CONTENT */
-
-.letter-content{
-
-    line-height:1.9;
-
-    color:#6F555D;
-
-    font-size:17px;
-
-    text-align:justify;
-
-}
-
-.letter-content p{
-
-    margin-bottom:18px;
-
-}
-
-/* BACK */
-
-.backBtn{
-
-    display:block;
-
-    margin:35px auto 0;
-
-    background:#FF7DAE;
-
-    color:white;
-
-    padding:12px 35px;
-
-}
-
-.backBtn:hover{
-
-    background:#FF679F;
-
-}
-
-#answerPage{
-
-    position:relative;
-
-}
-
-#answerPage .btn-group{
-
-    position:relative;
-
-    width:420px;
-    height:100px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-}
-
-/* YES */
-
-#yesBtn{
-
-    width:170px;
-    height:60px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-size:20px;
-    font-weight:600;
-
-    border-radius:50px;
-
-}
-
-/* NO */
-
-#noBtn{
-
-    position:absolute;
-
-    right:0;
-
-    width:170px;
-    height:60px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-size:20px;
-    font-weight:600;
-
-    border-radius:50px;
-
-}
-/* ================================================= */
-/* FINAL PAGE */
-/* ================================================= */
-
-.final-card{
-
-    width:720px;
-    max-width:90%;
-
-    background:#FFF8E7;
-
-    padding:40px;
-
-    border-radius:25px;
-
-    box-shadow:
-        0 20px 45px rgba(255,105,180,.18);
-
-    text-align:center;
-
-}
-
-.final-card h2{
-
-    color:#D65A8C;
-
-    margin-bottom:25px;
-
-    font-size:34px;
-
-}
-
-.final-card p{
-
-    color:#6F555D;
-
-    font-size:17px;
-
-    line-height:1.9;
-
-    margin-bottom:18px;
-
-}
-
-/* ================================================= */
-/* SCROLLBAR */
-/* ================================================= */
-
-.letter-card::-webkit-scrollbar{
-
-    width:8px;
-
-}
-
-.letter-card::-webkit-scrollbar-thumb{
-
-    background:#FFB6D2;
-
-    border-radius:50px;
-
-}
-
-.letter-card::-webkit-scrollbar-track{
-
-    background:#FFF2F7;
-
-}
-
-/* ================================================= */
-/* ANIMATION */
-/* ================================================= */
-
-@keyframes fadeUp{
-
-    from{
-
-        opacity:0;
-        transform:translateY(30px);
-
-    }
-
-    to{
-
-        opacity:1;
-        transform:translateY(0);
-
-    }
-
-}
-
-.page.active>*{
-
-    animation:fadeUp .8s ease;
-
-}
-
-/* ================================================= */
-/* HEART PULSE */
-/* ================================================= */
-
-@keyframes heartbeat{
-
-    0%{
-        transform:rotate(-45deg) scale(1);
-    }
-
-    25%{
-        transform:rotate(-45deg) scale(1.05);
-    }
-
-    50%{
-        transform:rotate(-45deg) scale(.98);
-    }
-
-    75%{
-        transform:rotate(-45deg) scale(1.06);
-    }
-
-    100%{
-        transform:rotate(-45deg) scale(1);
-    }
-
-}
-
-.heart{
-
-    animation:heartbeat 2s infinite;
-
-}
-
-/* ================================================= */
-/* LOCK */
-/* ================================================= */
-
-@keyframes lockFloat{
-
-    0%,100%{
-
-        transform:translateX(-50%) translateY(0);
-
-    }
-
-    50%{
-
-        transform:translateX(-50%) translateY(-6px);
-
-    }
-
-}
-
-.lock{
-
-    animation:lockFloat 2.5s ease-in-out infinite;
-
-}
-
-/* ================================================= */
-/* BUTTON */
-/* ================================================= */
-
-button{
-
-    transition:
-        .3s transform,
-        .3s box-shadow,
-        .3s background;
-
-}
-
-button:hover{
-
-    transform:translateY(-4px);
-
-    box-shadow:0 10px 25px rgba(255,105,180,.25);
-
-}
-
-button:active{
-
-    transform:scale(.96);
-
-}
-
-/* ================================================= */
-/* INPUT */
-/* ================================================= */
-
-.pin{
-
-    transition:.3s;
-
+    width: 52px;
+    height: 52px;
+    border: 2px solid transparent;
+    outline: none;
+    border-radius: 14px;
+    background: white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #D65A8C;
+    box-shadow: 0 8px 18px rgba(0,0,0,.08);
+    transition: .3s ease;
 }
 
 .pin:focus{
+    transform: scale(1.08);
+    border-color: #FF7DAE;
+    box-shadow: 0 0 15px rgba(255,105,180,.4);
+}
 
-    transform:scale(1.08);
+.shake {
+    animation: shakeAnim 0.4s ease-in-out;
+}
 
-    box-shadow:
-        0 0 15px rgba(255,105,180,.35);
+@keyframes shakeAnim {
+    0%, 100% { transform: translateX(-50%); }
+    20%, 60% { transform: translateX(-56%); }
+    40%, 80% { transform: translateX(-44%); }
+}
 
+#enterBtn{ margin-top: 25px; }
+
+#wrongText{
+    margin-top: 15px;
+    color: #E6397A;
+    font-weight: 600;
+    display: none;
+    animation: fadeUp 0.3s ease;
 }
 
 /* ================================================= */
-/* ENVELOPE */
+/* PAGE 3: ENVELOPE (SHAPE DIPERBAIKI) */
 /* ================================================= */
 
-.envelope{
+#page3{ gap: 30px; }
 
-    transition:
-        transform .4s,
-        filter .4s;
-
+.envelope {
+    position: relative;
+    width: 280px;
+    height: 180px;
+    cursor: pointer;
+    transition: transform .4s ease;
 }
 
-.envelope:hover{
+.envelope:hover {
+    transform: translateY(-8px);
+}
 
-    filter:drop-shadow(0 18px 20px rgba(255,105,180,.25));
+.envelope-pocket {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 130px;
+    background: #FFF8E7;
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 18px 35px rgba(255,105,180,.20);
+    z-index: 2;
+}
 
+.envelope-flap {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #FFF8E7;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top;
+    transition: .6s ease;
+    z-index: 3;
+    box-shadow: 0 -3px 10px rgba(255,105,180,.08);
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.menu-card{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 25px 30px;
+    width: 380px;
+    max-width: 90vw;
+    border-radius: 25px;
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 15px 35px rgba(255,105,180,.18);
+    animation: fadeUp 0.5s ease;
+}
+
+.menu-card button{ 
+    width: 100%;
+    font-size: 15px;
+    padding: 14px 20px;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.3;
 }
 
 /* ================================================= */
-/* LETTER */
+/* LETTER & FINAL CARD */
 /* ================================================= */
+
+.letter-card, .final-card{
+    width: 680px;
+    max-width: 92%;
+    background: #FFF8E7;
+    border-radius: 25px;
+    padding: 35px 40px;
+    box-shadow: 0 20px 45px rgba(255,105,180,.18);
+    animation: fadeUp .6s ease;
+    position: relative;
+}
 
 .letter-card{
+    max-height: 80vh;
+    overflow-y: auto;
+}
 
-    animation:fadeUp .7s;
+.letter-card h2, .final-card h2{
+    text-align: center;
+    color: #D65A8C;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
 
+.letter-content{
+    line-height: 1.8;
+    color: #6F555D;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.backBtn{
+    display: block;
+    margin: 30px auto 0;
 }
 
 .final-card{
+    text-align: center;
+}
 
-    animation:fadeUp .7s;
-
+.final-card p{
+    color: #6F555D;
+    font-size: 17px;
+    line-height: 1.8;
 }
 
 /* ================================================= */
-/* MENU */
+/* ANSWER PAGE (RANDOM RUNAWAY NO BUTTON) */
 /* ================================================= */
 
-.menu-card{
+#answerPage{ position: relative; }
 
-    animation:fadeUp .5s;
+.btn-group-answer{
+    position: relative;
+    width: 420px;
+    max-width: 90vw;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+#yesBtn{
+    position: absolute;
+    left: 0;
+    width: 180px;
+    height: 55px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    z-index: 2;
+}
+
+#noBtn{
+    position: absolute;
+    right: 0;
+    width: 180px;
+    height: 55px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 3;
 }
 
 /* ================================================= */
-/* TITLE */
+/* ANIMATIONS */
 /* ================================================= */
 
-.title{
-
-    animation:fadeUp .7s;
-
+@keyframes fadeUp{
+    from{ opacity: 0; transform: translateY(25px); }
+    to{ opacity: 1; transform: translateY(0); }
 }
 
-.subtitle{
+.page.active > *{ animation: fadeUp .7s ease; }
 
-    animation:fadeUp .9s;
-
+@keyframes heartbeat{
+    0%, 100%{ transform: scale(1); }
+    25%{ transform: scale(1.04); }
+    50%{ transform: scale(.98); }
+    75%{ transform: scale(1.05); }
 }
 
-/* ================================================= */
-/* SMOOTH */
-/* ================================================= */
+.letter-card::-webkit-scrollbar{ width: 7px; }
+.letter-card::-webkit-scrollbar-thumb{ background: #FFB6D2; border-radius: 50px; }
+.letter-card::-webkit-scrollbar-track{ background: #FFF2F7; }
 
-html{
-
-    scroll-behavior:smooth;
-
-}
+::selection{ background: #FFB6D2; color: white; }
 
 /* ================================================= */
-/* RESPONSIVE */
+/* RESPONSIVE DESIGN (MOBILE) */
 /* ================================================= */
 
 @media(max-width:768px){
-
-.title{
-
-    font-size:34px;
-
+    .page { padding: 15px; }
+    .title{ font-size: 28px; }
+    .subtitle{ font-size: 15px; margin-bottom: 25px; padding: 0 10px; }
+    .heart-lock-group{ transform: scale(0.82); margin: -20px 0; }
+    .envelope{ transform: scale(0.85); }
+    #page3 { gap: 15px; }
+    .letter-card, .final-card{ width: 95%; padding: 24px 20px; max-height: 82vh; }
+    .letter-card h2, .final-card h2{ font-size: 22px; }
+    .letter-content{ font-size: 14.5px; }
+    .backBtn { padding: 12px 25px; font-size: 14px; }
+    .btn-group-answer{ width: 320px; }
+    #yesBtn, #noBtn { width: 140px; height: 50px; font-size: 15px; }
 }
-
-.subtitle{
-
-    font-size:16px;
-
-    width:90%;
-
-}
-
-.heart-wrapper{
-
-    transform:scale(.8);
-
-}
-
-.letter-card{
-
-    width:92%;
-
-    padding:28px;
-
-}
-
-.final-card{
-
-    width:92%;
-
-    padding:28px;
-
-}
-
-.envelope{
-
-    transform:scale(.88);
-
-}
-
-.menu-card{
-
-    width:90%;
-
-}
-
-.menu-card button{
-
-    width:100%;
-
-}
-
-.btn-group{
-
-    flex-direction:column;
-
-}
-
-}
-
-/* ================================================= */
-/* PHONE */
-/* ================================================= */
 
 @media(max-width:480px){
-
-.title{
-
-    font-size:28px;
-
-}
-
-.subtitle{
-
-    font-size:15px;
-
-}
-
-button{
-
-    width:180px;
-
-}
-
-.heart-wrapper{
-
-    transform:scale(.65);
-
-}
-
-}
-
-/* ================================================= */
-/* SELECTION */
-/* ================================================= */
-
-::selection{
-
-    background:#FFB6D2;
-
-    color:white;
-
+    .title{ font-size: 24px; }
+    .subtitle{ font-size: 13px; }
+    .heart-lock-group{ transform: scale(0.72); margin: -40px 0; }
+    .menu-card{ width: 100%; padding: 18px 15px; }
+    .menu-card button{ font-size: 13.5px; padding: 12px 15px; }
+    .btn-group-answer{ width: 280px; }
+    #yesBtn, #noBtn { width: 125px; height: 46px; font-size: 14px; }
 }
